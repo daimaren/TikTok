@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6)
 
-set(APP_NAME cpp-tests)
+set(APP_NAME tiktok)
 
 project(${APP_NAME})
 
@@ -8,8 +8,8 @@ if(NOT DEFINED BUILD_ENGINE_DONE)
     set(TIKTOK_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
     set(CMAKE_MODULE_PATH ${TIKTOK_ROOT_PATH}/cmake/Modules/)
 
-    include(CocosBuildSet)
-    add_subdirectory(${TIKTOK_ROOT_PATH}/cocos ${ENGINE_BINARY_PATH}/cocos/core)
+#    include(CocosBuildSet)
+    add_subdirectory(${TIKTOK_ROOT_PATH}/sharedcpp)
 endif()
 
 # record sources, headers, resources...
@@ -26,13 +26,8 @@ endif()
 if(ANDROID)
     # change APP_NAME to the share library name for Android, it's value depend on AndroidManifest.xml
     set(APP_NAME cpp_tests)
-    list(APPEND TIKTOK_HEADER
-         Classes/JNITest/JNITest.h
-         )
-    list(APPEND TIKTOK_SOURCE
-         Classes/JNITest/JNITest.cpp
-         proj.android/app/jni/main.cpp
-         ) 
+    # add jni source code
+    
 elseif(APPLE)
     if(IOS)
         list(APPEND TIKTOK_HEADER
@@ -69,17 +64,17 @@ if(NOT ANDROID)
     add_executable(${APP_NAME} ${all_code_files})
 else()
     add_library(${APP_NAME} SHARED ${all_code_files})
-    add_subdirectory(${TIKTOK_ROOT_PATH}/cocos/platform/android ${ENGINE_BINARY_PATH}/cocos/platform)
-    target_link_libraries(${APP_NAME} -Wl,--whole-archive cpp_android_spec -Wl,--no-whole-archive)
+#    add_subdirectory(${TIKTOK_ROOT_PATH}/cocos/platform/android ${ENGINE_BINARY_PATH}/cocos/platform)
+#    target_link_libraries(${APP_NAME} -Wl,--whole-archive cpp_android_spec -Wl,--no-whole-archive)
 endif()
 
-target_link_libraries(${APP_NAME} cocos2d)
+target_link_libraries(${APP_NAME} songstudio)
 target_include_directories(${APP_NAME}
         PRIVATE Classes
 )
 
 # mark app resources
-setup_cocos_app_config(${APP_NAME})
+#setup_cocos_app_config(${APP_NAME})
 if(APPLE)
     set_target_properties(${APP_NAME} PROPERTIES RESOURCE "${APP_UI_RES}")
     if(IOS)

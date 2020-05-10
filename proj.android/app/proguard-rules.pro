@@ -1,6 +1,6 @@
 # Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
-# in E:\developSoftware\Android\SDK/tools/proguard/proguard-android.txt
+# in C:\Shawn\01_tools\03_sdk/tools/proguard/proguard-android.txt
 # You can edit the include path and order by changing the proguardFiles
 # directive in build.gradle.
 #
@@ -16,23 +16,10 @@
 #   public *;
 #}
 
-# Proguard Cocos2d-x for release
--keep public class org.cocos2dx.** { *; }
--dontwarn org.cocos2dx.**
--keep public class com.chukong.** { *; }
--dontwarn com.chukong.**
--keep public class com.huawei.android.** { *; }
--dontwarn com.huawei.android.**
+# Uncomment this to preserve the line number information for
+# debugging stack traces.
+#-keepattributes SourceFile,LineNumberTable
 
-# Proguard Apache HTTP for release
--keep class org.apache.http.** { *; }
--dontwarn org.apache.http.**
-
-# Proguard Android Webivew for release. uncomment if you are using a webview in cocos2d-x
-#-keep public class android.net.http.SslError
-#-keep public class android.webkit.WebViewClient
-
-#-dontwarn android.webkit.WebView
-#-dontwarn android.net.http.SslError
-#-dontwarn android.webkit.WebViewClient
-
+# If you keep the line number information, uncomment this to
+# hide the original source file name.
+#-renamesourcefileattribute SourceFile
