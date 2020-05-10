@@ -13,9 +13,9 @@ include_directories(
             )
 
 # libpng存疑,define PNG_ARM_NEON_OPT 2=>0,暂时禁用neon优化
-if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
-set(ENABLE_NEON ON)
-endif()
+#if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
+#set(ENABLE_NEON ON)
+#endif()
 
 add_library(libeditcore STATIC
             3rdparty/libpng/png.c

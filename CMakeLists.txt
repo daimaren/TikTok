@@ -13,14 +13,14 @@ if(NOT DEFINED BUILD_ENGINE_DONE)
 endif()
 
 # record sources, headers, resources...
-set(TIKTOK_SOURCE)
-set(TIKTOK_HEADER)
+set(TIKTOK_SOURCE HelloWorld.cpp HelloWorld.hpp)
+set(TIKTOK_HEADER HelloWorldIOS.h HelloWorldIOS.mm)
 
 set(TIKTOK_RES_FOLDER
     "${CMAKE_CURRENT_SOURCE_DIR}/Resources"
     )
 if(APPLE OR VS)
-    cocos_mark_multi_resources(cc_common_res RES_TO "Resources" FOLDERS ${TIKTOK_RES_FOLDER})
+#    cocos_mark_multi_resources(cc_common_res RES_TO "Resources" FOLDERS ${TIKTOK_RES_FOLDER})
 endif()
 
 if(ANDROID)
@@ -31,20 +31,20 @@ if(ANDROID)
 elseif(APPLE)
     if(IOS)
         list(APPEND TIKTOK_HEADER
-             proj.ios/Classes/testsAppDelegate.h
-             proj.ios/Classes/RootViewController.h
+#             proj.ios/Classes/testsAppDelegate.h
+#             proj.ios/Classes/RootViewController.h
              )
         set(APP_UI_RES
-            proj.ios/LaunchScreen.storyboard
-            proj.ios/LaunchScreenBackground.png
-            proj.ios/Images.xcassets
+#            proj.ios/LaunchScreen.storyboard
+#            proj.ios/LaunchScreenBackground.png
+#            proj.ios/Images.xcassets
             )
         list(APPEND TIKTOK_SOURCE
-             proj.ios/main.m
-             proj.ios/Classes/testsAppDelegate.mm
-             proj.ios/Classes/RootViewController.mm
-             proj.ios/Prefix.pch
-             ${APP_UI_RES}
+#             proj.ios/main.m
+#             proj.ios/Classes/testsAppDelegate.mm
+#             proj.ios/Classes/RootViewController.mm
+#             proj.ios/Prefix.pch
+#             ${APP_UI_RES}
              )
     endif()
     list(APPEND TIKTOK_SOURCE ${cc_common_res})
@@ -78,7 +78,7 @@ target_include_directories(${APP_NAME}
 if(APPLE)
     set_target_properties(${APP_NAME} PROPERTIES RESOURCE "${APP_UI_RES}")
     if(IOS)
-        cocos_pak_xcode(${APP_NAME} INFO_PLIST "iOSBundleInfo.plist.in")
-        set_xcode_property(${APP_NAME} ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon-${APP_NAME}")
+#        cocos_pak_xcode(${APP_NAME} INFO_PLIST "iOSBundleInfo.plist.in")
+#        set_xcode_property(${APP_NAME} ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon-${APP_NAME}")
     endif()
 endif()

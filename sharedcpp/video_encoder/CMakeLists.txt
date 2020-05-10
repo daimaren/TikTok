@@ -19,18 +19,18 @@ set(CMAKE_CPP_FLAGS "${CMAKE_CPP_FLAGS} -DGL_GLEXT_PROTOTYPES -DEGL_EGLEXT_PROTO
 
 SET(ARCH_SRC_FILES libvideo_encoder/soft_encoder/color_conversion/color_conversion_default.cpp)
 
-if(${ANDROID_ABI} STREQUAL "x86")
+#if(${ANDROID_ABI} STREQUAL "x86")
 
-SET(ARCH_SRC_FILES libvideo_encoder/soft_encoder/color_conversion/color_conversion_x86.cpp)
+#SET(ARCH_SRC_FILES libvideo_encoder/soft_encoder/color_conversion/color_conversion_x86.cpp)
 
-endif(${ANDROID_ABI} STREQUAL "x86")
+#endif(${ANDROID_ABI} STREQUAL "x86")
 
-if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
+#if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
 SET(CMAKE_C_FLAGS "-DHAVE_CONFIG_H -mfloat-abi=softfp -mfpu=neon -march=armv7-a")
 SET(CMAKE_CPP_FLAGS "-DHAVE_CONFIG_H -mfloat-abi=softfp -mfpu=neon -march=armv7-a")
 SET(ARCH_SRC_FILES libvideo_encoder/soft_encoder/color_conversion/color_conversion_armv7a.cpp)
 SET(ENABLE_NEON ON)
-endif(${ANDROID_ABI} STREQUAL "armeabi-v7a")
+#endif(${ANDROID_ABI} STREQUAL "armeabi-v7a")
 
 add_library(libvideoencoder STATIC libvideo_encoder/video_encoder_adapter.cpp
             libvideo_encoder/soft_encoder/soft_encoder_adapter.cpp
